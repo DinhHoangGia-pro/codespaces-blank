@@ -1,0 +1,10 @@
+0:0:0:0:0:0:0:1 - - [30/May/2026:01:07:44 +0000] "GET / HTTP/1.1" 200 52 http-bio-8080-exec-1 52
+0:0:0:0:0:0:0:1 - - [30/May/2026:01:07:44 +0000] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-8080-exec-3 4
+0:0:0:0:0:0:0:1 - - [30/May/2026:01:07:58 +0000] "GET /products.jsp HTTP/1.1" 500 2879 http-bio-8080-exec-5 173
+0:0:0:0:0:0:0:1 - - [30/May/2026:01:10:24 +0000] "GET /products.jsp HTTP/1.1" 200 296 http-bio-8080-exec-6 368
+0:0:0:0:0:0:0:1 - - [30/May/2026:01:12:08 +0000] "GET /products.jsp HTTP/1.1" 500 2489 http-bio-8080-exec-8 70
+0:0:0:0:0:0:0:1 - - [30/May/2026:01:13:18 +0000] "GET /products.jsp HTTP/1.1" 500 2901 http-bio-8080-exec-9 38
+0:0:0:0:0:0:0:1 - - [30/May/2026:01:15:16 +0000] "GET /products.jsp HTTP/1.1" 500 2909 http-bio-8080-exec-10 39
+0:0:0:0:0:0:0:1 - - [30/May/2026:01:15:58 +0000] "GET /products.jsp HTTP/1.1" 500 2909 http-bio-8080-exec-1 51
+0:0:0:0:0:0:0:1 - - [30/May/2026:01:16:21 +0000] "GET /products.jsp HTTP/1.1" 500 2901 http-bio-8080-exec-3 34
+0:0:0:0:0:0:0:1 - - [30/May/2026:01:17:42 +0000] "GET /products.jsp HTTP/1.1" 200 9606 http-bio-8080-exec-5 589
