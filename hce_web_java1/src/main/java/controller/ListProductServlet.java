@@ -14,6 +14,7 @@ import java.util.List;
             urlPatterns = {"/products"})
 public class ListProductServlet extends HttpServlet {
 
+ 
     @Override
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response)
@@ -21,12 +22,19 @@ public class ListProductServlet extends HttpServlet {
 
         ProductDAO dao = new ProductDAO();
 
-        List<Product> list = dao.getAllProducts();
+        String keyword = request.getParameter("q");
+
+        List<Product> list;
+
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            list = dao.searchProduct(keyword);
+        } else {
+            list = dao.getAllProducts();
+        }
 
         request.setAttribute("listProduct", list);
 
-        request.getRequestDispatcher(
-                "/products.jsp")
-                .forward(request, response);
+        request.getRequestDispatcher("/index.jsp")
+               .forward(request, response);
     }
 }

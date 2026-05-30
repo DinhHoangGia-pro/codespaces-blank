@@ -8,7 +8,7 @@ public class DBContext {
 
     private final String SERVER = "localhost";
     private final String PORT = "1433";
-    private final String DATABASE = "Northwind";
+    private final String DATABASE = "northwind";
 
     private final String USER = "sa";
     private final String PASSWORD = "Vietnam@123";

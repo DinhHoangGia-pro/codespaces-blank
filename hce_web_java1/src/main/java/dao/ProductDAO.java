@@ -57,4 +57,46 @@ public class ProductDAO {
 
         return list;
     }
+
+    //-----------------
+
+    public List<Product> searchProduct(String keyword) {
+    List<Product> list = new ArrayList<>();
+
+    String sql = """
+        SELECT ProductID,
+               ProductName,
+               UnitPrice,
+               UnitsInStock
+        FROM Products
+        WHERE ProductName LIKE ?
+        """;
+
+    try {
+        conn = new DBContext().getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, "%" + keyword + "%");
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Product p = new Product();
+
+            p.setProductID(rs.getInt("ProductID"));
+            p.setProductName(rs.getString("ProductName"));
+            p.setUnitPrice(rs.getDouble("UnitPrice"));
+            p.setUnitsInStock(rs.getInt("UnitsInStock"));
+
+            list.add(p);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return list;
+}
+
+
+
 }
