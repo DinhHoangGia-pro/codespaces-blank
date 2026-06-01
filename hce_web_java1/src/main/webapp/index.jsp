@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Product"%>
+<%@page import="dao.*"%>
 
 <%
     List<Product> listProduct =
@@ -8,6 +9,9 @@
 
     String keyword = request.getParameter("q");
     if(keyword == null){
+        
+        ProductDAO dao = new ProductDAO();
+        listProduct=dao.getAllProducts();
         keyword = "";
     }
 %>
@@ -111,7 +115,7 @@
 
     <h2>Northwind Products</h2>
 
-    <form action="products" method="get" class="search-box">
+    <form action="timsanpham" method="post" class="search-box">
         <input
             type="text"
             name="q"

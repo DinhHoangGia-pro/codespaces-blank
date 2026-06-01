@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DBContext {
 
-    private final String SERVER = "localhost";
+    private final String SERVER = "127.0.0.1";
     private final String PORT = "1433";
     private final String DATABASE = "northwind";
 

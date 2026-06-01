@@ -11,12 +11,12 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "ListProductServlet",
-            urlPatterns = {"/products"})
+            urlPatterns = {"/timsanpham"})
 public class ListProductServlet extends HttpServlet {
 
  
     @Override
-    protected void doGet(HttpServletRequest request,
+    protected void doPost(HttpServletRequest request,
                          HttpServletResponse response)
             throws ServletException, IOException {
 
