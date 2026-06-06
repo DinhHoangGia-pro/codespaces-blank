@@ -22,7 +22,7 @@
           href="css/main.css">
 </head>
 
-<body>
+<body style="margin:0px; padding: 0px;">
 
 <header>
 
@@ -31,8 +31,8 @@
 
         <!-- LEFT -->
         <div id="topleft">
-            <a href="index.jsp">TRANG CHỦ</a>
-            <a href="#">EGOV</a>
+            <a href="index.jsp">TRANG CHỦ</a>&nbsp;&nbsp;&nbsp;
+            <a href="#">EGOV</a>&nbsp;&nbsp;&nbsp;
             <a href="#">SINH VIÊN</a>
         </div>
 
