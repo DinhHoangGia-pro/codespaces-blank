@@ -43,7 +43,7 @@ public class UserDAO {
 
             String sql =
                     "SELECT COUNT(*) "
-                    + "FROM tbl_User "
+                    + "FROM tbl_user "
                     + "WHERE username=? "
                     + "AND password=?";
 
@@ -79,7 +79,7 @@ public class UserDAO {
 
             String sql =
                     "SELECT * "
-                    + "FROM tbl_User "
+                    + "FROM tbl_user "
                     + "WHERE username=?";
 
             PreparedStatement ps =

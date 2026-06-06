@@ -1,7 +1,8 @@
 package controller;
 
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
 
 import java.io.IOException;
 
@@ -21,7 +22,14 @@ public class LogoutServlet extends HttpServlet {
             session.invalidate();
         }
 
+        String host = request.getHeader("X-Forwarded-Host");
+        String proto = request.getHeader("X-Forwarded-Proto");
+
         response.sendRedirect(
-                "dangnhap.jsp");
+                proto + "://" + host + "/dangnhap.jsp"
+        );
+
+        // response.sendRedirect(
+        //         "dangnhap.jsp");
     }
 }

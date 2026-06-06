@@ -19,7 +19,7 @@
     <title>Trường Cao đẳng Kinh tế TP.HCM</title>
 
     <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/css/main.css">
+          href="css/main.css">
 </head>
 
 <body>

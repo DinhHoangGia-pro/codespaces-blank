@@ -3,10 +3,9 @@ package controller;
 import dao.UserDAO;
 import model.User;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
-
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet("/xulydangnhap")
@@ -18,45 +17,59 @@ public class XuLyDangNhap extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        String username =
-                request.getParameter("username");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
 
-        String password =
-                request.getParameter("password");
-
-        boolean ok =
-                UserDAO.checkLogin(
-                        username,
-                        password);
+        boolean ok = UserDAO.checkLogin(
+                username,
+                password
+        );
 
         if (ok) {
 
-            User user =
-                    UserDAO.getUser(username);
+            User user = UserDAO.getUser(username);
 
-            HttpSession session =
-                    request.getSession();
+            HttpSession session = request.getSession();
 
             session.setAttribute(
                     "user",
-                    user);
+                    user
+            );
 
             session.setMaxInactiveInterval(
-                    30 * 60); // 30 phút
+                    30 * 60
+            ); // 30 phút
 
-            response.sendRedirect(
-                    "index.jsp");
+          System.out.println(request.getHeader("Host"));
+        System.out.println(request.getHeader("X-Forwarded-Host"));
+        System.out.println(request.getHeader("X-Forwarded-Proto"));
+        String host = request.getHeader("X-Forwarded-Host");
+        String proto = request.getHeader("X-Forwarded-Proto");
+
+        response.sendRedirect(
+                proto + "://" + host + "/index.jsp"
+        );
+
+
+        //     response.sendRedirect(
+        //             request.getContextPath() + "/index.jsp"
+        //     );
+
+      
 
         } else {
 
             request.setAttribute(
                     "error",
-                    "Sai tài khoản hoặc mật khẩu");
+                    "Sai tài khoản hoặc mật khẩu"
+            );
 
             request.getRequestDispatcher(
-                    "login.jsp")
-                    .forward(request,
-                            response);
+                    "dangnhap.jsp"
+            ).forward(
+                    request,
+                    response
+            );
         }
     }
 }

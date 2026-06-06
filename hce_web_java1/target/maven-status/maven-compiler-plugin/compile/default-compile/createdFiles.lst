@@ -2,4 +2,8 @@ context/DBContext.class
 controller/KmToMilesServlet.class
 dao/ProductDAO.class
 model/Product.class
+controller/XuLyDangNhap.class
+dao/UserDAO.class
 controller/ListProductServlet.class
+model/User.class
+controller/LogoutServlet.class
