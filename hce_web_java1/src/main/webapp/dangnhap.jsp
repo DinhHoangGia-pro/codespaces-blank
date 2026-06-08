@@ -76,6 +76,15 @@ body{
 </head>
 <body>
 
+
+<script>
+function loginKhongAnToan() {
+    const form = document.getElementById("loginForm");
+    form.action = "login_khongantoan";
+    form.submit();
+}
+</script>
+
 <div class="login-box">
 
     <h2>Đăng nhập</h2>
@@ -86,7 +95,7 @@ body{
         <div class="error"><%= msg %></div>
     <% } %>
 
-    <form action="xulydangnhap" method="post">
+    <form id="loginForm" action="xulydangnhap" method="post">
 
         <div class="form-group">
             <label>Tài khoản</label>
@@ -98,8 +107,15 @@ body{
             <input type="password" name="password" required>
         </div>
 
+            
+
         <button type="submit" class="btn-login">
             Đăng nhập
+        </button>
+
+        <button type="button" class="btn_khongantoan" 
+         style="margin-top: 30px; width: 100%;  padding: 10px; background: #eb1b3d; color: white;  border: none;  border-radius: 5px; cursor: pointer;" onclick="loginKhongAnToan()">
+             Đăng nhập không an toàn
         </button>
 
     </form>

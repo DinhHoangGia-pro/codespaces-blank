@@ -12,28 +12,27 @@ import java.util.List;
 public class ProductDAO {
 
     public ProductDAO() {
-}
+    }
 
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
 
+    // ---------------- GET ALL ----------------
     public List<Product> getAllProducts() {
 
         List<Product> list = new ArrayList<>();
 
         String sql =
-                "SELECT ProductID, ProductName, "
-                + "SupplierID, CategoryID, "
-                + "QuantityPerUnit, UnitPrice, UnitsInStock "
-                + "FROM Products";
+                "SELECT ProductID, ProductName, " +
+                "SupplierID, CategoryID, " +
+                "QuantityPerUnit, UnitPrice, UnitsInStock " +
+                "FROM Products";
 
         try {
 
             conn = new DBContext().getConnection();
-
             ps = conn.prepareStatement(sql);
-
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -58,45 +57,78 @@ public class ProductDAO {
         return list;
     }
 
-    //-----------------
-
+    // ---------------- SEARCH SAFE ----------------
     public List<Product> searchProduct(String keyword) {
-    List<Product> list = new ArrayList<>();
 
-    String sql = """
-        SELECT ProductID,
-               ProductName,
-               UnitPrice,
-               UnitsInStock
-        FROM Products
-        WHERE ProductName LIKE ?
-        """;
+        List<Product> list = new ArrayList<>();
 
-    try {
-        conn = new DBContext().getConnection();
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setString(1, "%" + keyword + "%");
+        String sql = """
+                SELECT ProductID,
+                       ProductName,
+                       UnitPrice,
+                       UnitsInStock
+                FROM Products
+                WHERE ProductName LIKE ?
+                """;
 
-        ResultSet rs = ps.executeQuery();
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + keyword + "%");
 
-        while (rs.next()) {
-            Product p = new Product();
+            rs = ps.executeQuery();
 
-            p.setProductID(rs.getInt("ProductID"));
-            p.setProductName(rs.getString("ProductName"));
-            p.setUnitPrice(rs.getDouble("UnitPrice"));
-            p.setUnitsInStock(rs.getInt("UnitsInStock"));
+            while (rs.next()) {
 
-            list.add(p);
+                Product p = new Product();
+                p.setProductID(rs.getInt("ProductID"));
+                p.setProductName(rs.getString("ProductName"));
+                p.setUnitPrice(rs.getDouble("UnitPrice"));
+                p.setUnitsInStock(rs.getInt("UnitsInStock"));
+
+                list.add(p);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-    } catch (Exception e) {
-        e.printStackTrace();
+        return list;
     }
 
-    return list;
-}
+    // ---------------- SEARCH HACKED (DEMO ONLY) ----------------
+    public List<Product> searchProduct_hacked(String keyword) {
 
+        List<Product> list = new ArrayList<>();
 
+        //'UNION select id ProductID, username+','+[password] ProductName,		 0 UnitPrice, 0 UnitsInStock from tbl_User--
 
+        String sql =
+                "SELECT ProductID, ProductName, UnitPrice, UnitsInStock " +
+                "FROM Products " +
+                "WHERE ProductName LIKE '%" + keyword + "%'";
+
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Product p = new Product();
+                p.setProductID(rs.getInt("ProductID"));
+                p.setProductName(rs.getString("ProductName"));
+                p.setUnitPrice(rs.getDouble("UnitPrice"));
+                p.setUnitsInStock(rs.getInt("UnitsInStock"));
+
+                list.add(p);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
 }

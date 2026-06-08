@@ -1,6 +1,37 @@
 /* ===== Google Fonts ===== */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap');
 
+
+.btn_khongantoan {
+width: 100%;
+margin-top: 12px;
+padding: 12px 16px;
+border: none;
+border-radius: 8px;
+background: linear-gradient(135deg, #dc2626, #b91c1c);
+color: white;
+font-size: 15px;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.2s ease;
+box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+}
+
+.btn_khongantoan {
+background: linear-gradient(135deg, #ef4444, #dc2626);
+transform: translateY(-2px);
+box-shadow: 0 8px 20px rgba(220, 38, 38, 0.35);
+}
+
+.btn_khongantoan {
+transform: translateY(0);
+}
+
+
+
+
+
+
 /* ===== CSS Variables ===== */
 :root {
   --primary: #b22d30;

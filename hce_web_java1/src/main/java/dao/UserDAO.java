@@ -66,6 +66,42 @@ public class UserDAO {
         return false;
     }
 
+
+    public static boolean checkLogin_hacked(
+            String username,
+            String password) {
+
+        try {
+
+            String hash = hashPassword(password);
+
+            Connection conn =
+                    new DBContext().getConnection();
+
+            String sql =
+                    "SELECT COUNT(*) "
+                    + "FROM tbl_user "
+                    + "WHERE username='"+username + "' AND password='"+password+"'";
+
+            PreparedStatement ps =
+                    conn.prepareStatement(sql);
+
+        //     ps.setString(1, username);
+        //     ps.setString(2, hash);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     /*
      * Lấy thông tin user
      */
